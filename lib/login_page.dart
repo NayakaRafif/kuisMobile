@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:untitled1/home_page.dart';
+String username = "";
+String password = "";
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,9 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: 20.0),
                     TextFormField(
                       style: TextStyle(color: Colors.blueGrey),
+                      onChanged: (value){
+                        username = value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'Username',
                         labelStyle: TextStyle(color: Colors.blueGrey),
@@ -49,6 +54,9 @@ class LoginPage extends StatelessWidget {
                     TextFormField(
                       style: TextStyle(color: Colors.blueGrey),
                       obscureText: true,
+                      onChanged: (value){
+                        password = value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: TextStyle(color: Colors.blueGrey),
@@ -62,7 +70,18 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: 20.0),
                     ElevatedButton(
                       onPressed: () {
-                        // Tambahkan logika untuk verifikasi login di sini
+                       if(username == "nay" && password == "123" ){
+                         Navigator.pushReplacement(context, 
+                         MaterialPageRoute(builder: (context) => HomePage()),
+                         );
+                       }else{
+                         SnackBar snackbar = SnackBar(
+                         content: Text("Username atau Password salah"),
+                         backgroundColor: Colors.red,
+                       );
+                       ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                       }
+                       
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey,
